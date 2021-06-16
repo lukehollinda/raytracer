@@ -1,0 +1,2 @@
+all: 
+	gcc -Wall driver.cpp image.cpp bitMapUtility.cpp -lstdc++ -o ./build
