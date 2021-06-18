@@ -6,7 +6,7 @@ std::ostream& operator<<(std::ostream& os, Vec3& left)
 {
     os.precision(5);
 
-    os << "x: " << left.getX()  << " y: " << left.getY() << "z: " << left.getz();
+    os << "x: " << left.getX()  << " y: " << left.getY() << "z: " << left.getZ();
     return os;
 }
 
