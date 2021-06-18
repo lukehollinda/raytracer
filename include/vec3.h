@@ -13,19 +13,21 @@ public:
     void setY(float y_){y = y_;}
     void setZ(float z_){z = z_;}
 
-    float getX(){ return x;}
-    float getY(){ return y;}
-    float getz(){ return z;}
+    float getX() const{ return x;}
+    float getY() const{ return y;}
+    float getZ() const{ return z;}
 
-    Vec3& operator+=(const Vec3& left);
-    Vec3& operator-=(const Vec3& left);
-    Vec3& operator*=(const Vec3& left);
-    Vec3& operator/=(const Vec3& left);
-    Vec3& operator*=(const float& left);
-    Vec3& operator/=(const float& left);
+    Vec3& operator+=(const Vec3& right);
+    Vec3& operator-=(const Vec3& right);
+    Vec3& operator*=(const Vec3& right);
+    Vec3& operator/=(const Vec3& right);
+    Vec3& operator*=(const float& right);
+    Vec3& operator/=(const float& right);
 
     //Negation Operator
     Vec3 operator -() const { return Vec3(-x, -y, -z);}
+    Vec3 operator/(const float& right) const;
+    Vec3 operator*(const float& right) const;
 
     float length() const { return sqrt(x*x + y*y + z*z); }
     void normalize(); 
