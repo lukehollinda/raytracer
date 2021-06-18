@@ -7,7 +7,7 @@ CC := g++ # This is the main compiler
 SRCDIR := src
 BUILDDIR := build
 TARGET := bin/runner 
-SHELL = git-bash.exe
+# SHELL = git-bash.exe
 
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
