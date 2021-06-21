@@ -1,2 +1,1 @@
-- Redo project struction -> upgrade make file to be a real make file
 - Implement everything

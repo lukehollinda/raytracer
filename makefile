@@ -13,6 +13,10 @@ SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 CFLAGS := -g -Wall
+
+# SOURCES := $(shell find . -name "*.cpp")
+# SOURCESFILENAME := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT) -printf "%f ")
+
 #LIB := -pthread -lmongoclient -L lib -lboost_thread-mt -lboost_filesystem-mt -lboost_system-mt
 INC := -I include
 
@@ -24,9 +28,12 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 
 clean:
 	@echo " Cleaning..."; 
-	$(RM) -r $(BUILDDIR) $(TARGET)
+	$(RM) -r $(BUILDDIR)/* $(TARGET)
 
-#print-%  : ; @echo $* = $($*)
+run: 
+	$(TARGET)
+
+print-%  : ; @echo $* = $($*)
 
 # Tests
 # tester:

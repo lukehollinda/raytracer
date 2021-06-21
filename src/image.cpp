@@ -59,5 +59,5 @@ void Image::setPixel(int w, int h, const Pixel& pixel)
         std::cout << "Invalid Image::set, height out of bounds. ";
         exit(EXIT_FAILURE);
     }
-    imageData.at(w).at(h) = pixel;
+    imageData.at(h).at(w) = pixel;
 }

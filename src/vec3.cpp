@@ -1,12 +1,14 @@
-#include "vec3.h"
 #include <iostream>
 #include <iomanip>
 
-std::ostream& operator<<(std::ostream& os, Vec3& left)
+#include "vec3.h"
+
+
+std::ostream& operator<<(std::ostream& os, const Vec3& vec)
 {
     os.precision(5);
 
-    os << "x: " << left.getX()  << " y: " << left.getY() << "z: " << left.getZ();
+    os << "x: " << vec.getX()  << " y: " << vec.getY() << " z: " << vec.getZ();
     return os;
 }
 
@@ -67,6 +69,23 @@ Vec3 Vec3::operator/(const float& right) const
 Vec3 Vec3::operator*(const float& right) const
 {
     return Vec3(x*right, y*right, z*right);
+}
+
+Vec3 Vec3::operator+(const Vec3& right) const
+{
+    return Vec3(x+right.getX(), y+right.getY(), z+right.getZ());
+}
+
+Vec3 Vec3::operator-(const Vec3& right) const
+{
+    return Vec3(x-right.getX(), y-right.getY(), z-right.getZ());
+}
+void Vec3::normalize()
+{
+    x /= length();
+    y /= length();
+    z /= length();
+
 }
 
 Vec3 unitVector(Vec3 src)
