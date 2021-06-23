@@ -11,6 +11,8 @@ struct Pixel
         g = g_;
         b = b_;
     }
+
+    Pixel(): Pixel(0,0,0){}
 };
 
 

@@ -1,6 +1,6 @@
 #pragma once 
 #include "renderableObject.h"
-
+#include <limits>
 class Sphere : public RenderableObject
 {
 private: 
@@ -11,6 +11,6 @@ public:
     Sphere(): center(0,0,0), radius(0) {}
     Sphere(float radius_, Vec3 center_){radius = radius_; center = center_;}
 
-    bool hit(const Ray& r, float t_min, float t_max, HitResult result) const override;
+    virtual bool hit(const Ray& r, HitResult result, float t_min = 0, float t_max = std::numeric_limits<float>::max() ) const override;
 
 };

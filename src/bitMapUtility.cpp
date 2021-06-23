@@ -9,34 +9,27 @@ void generateBitmapImage(Image image, std::string imageFileName)
 
     //Rows must be padded to fit a 4 byte multiple.  (ie) width = 1, bytesPerPixel = 3, padding  
     const char padding[3] = {0, 0, 0};
-
     int paddingSize = (4 - (widthInBytes) % 4) % 4;
-
     int stride = (widthInBytes) + paddingSize;
 
     std::fstream imageOutput;
     imageOutput.open(imageFileName, std::fstream::out | std::fstream::trunc);
 
-    //FILE* imageFile = fopen((const char*)imageFileName, "wb");
-
+    
     const char* fileHeader = createBitmapFileHeader(image.getHeight(), stride);
-
     imageOutput.write(fileHeader, FILE_HEADER_SIZE);
 
-   // fwrite(fileHeader, 1, FILE_HEADER_SIZE, imageFile);
 
     char* infoHeader = createBitmapInfoHeader(image.getHeight(), image.getWidth() );
     imageOutput.write(infoHeader, INFO_HEADER_SIZE);
 
     //fwrite(infoHeader, 1, INFO_HEADER_SIZE, imageFile);
 
-    for (int i = 0; i < image.getHeight(); i++) {
-        //imageOutput.write()
+    for (int i = 0; i < image.getHeight(); i++) 
+    {
         std::vector<char> row = image.outputRowAsBytes(i);
         copy(row.cbegin(), row.cend(), std::ostreambuf_iterator<char>(imageOutput));
         imageOutput.write(padding, paddingSize);
-        // fwrite(image + (i*widthInBytes), BYTES_PER_PIXEL, width, imageFile);
-        // fwrite(padding, 1, paddingSize, imageFile);
     }
 
     imageOutput.close();

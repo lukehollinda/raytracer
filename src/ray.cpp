@@ -8,10 +8,10 @@ Vec3 Ray::pointAtTime(float t) const
 }
 
 
-// std::ostream& operator<<(std::ostream& os, Ray& right)
-// {
-//     os << "(Origin): " << right.getOrigin() << std::endl;
-//     os << "(Direction): " << right.getDirection() << std::endl;
+std::ostream& operator<<(std::ostream& os, Ray& right)
+{
+    os << "(Origin): " << right.getOrigin() << std::endl;
+    os << "(Direction): " << right.getDirection() << std::endl;
 
-//     return os;
-// }
+    return os;
+}

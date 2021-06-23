@@ -7,7 +7,8 @@
 #include "bitMapUtility.h"
 #include "vec3.h"
 #include "ray.h"
-
+#include "renderableObject.h"
+#include "sphere.h"
 using namespace std;
 
 
@@ -19,7 +20,7 @@ int main(int argc, char const *argv[])
 {
 
     int width = 1000; 
-    int height = 700;
+    int height = 1000;
     
     float aspectRatio = float(width)/float(height);
     Vec3 origin(0,0,0);
@@ -33,12 +34,27 @@ int main(int argc, char const *argv[])
 
     Image myImage(width, height); 
 
+    Sphere sphere(0.5, Vec3(0,0,-1)); 
+
     for(int i = 0; i < width; i++)
     {
         for( int k = 0; k < height; k++)
         {            
-            Vec3 point = lowerLeftCorner + horizontal*(i/width) + vertical*(i/height);
-            Pixel pixel( (unsigned char)std::rand()*255, (unsigned char)std::rand()*255, (unsigned char)std::rand()*255); 
+            Vec3 pointOnScreen = lowerLeftCorner + horizontal*(float(i)/width) + vertical*(float(k)/height);
+            Ray ray(origin, pointOnScreen);
+
+            Pixel pixel;
+            if(sphere.hit(ray, HitResult(), 0, 0 ))
+            {
+                pixel = Pixel(0,0,255);
+            }
+            else
+            {
+                pixel = Pixel(0,255,0);
+
+            }
+
+            //Pixel pixel( (unsigned char)std::rand()*255, (unsigned char)std::rand()*255, (unsigned char)std::rand()*255); 
             // Pixel pixel( (unsigned char)dot(point, lowerLeftCorner), (unsigned char)dot(point, lowerLeftCorner), (unsigned char)dot(point, lowerLeftCorner));
             myImage.setPixel(i,k, pixel);        
         }

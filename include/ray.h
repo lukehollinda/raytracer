@@ -21,5 +21,8 @@ class Ray
 
         Vec3 pointAtTime(float t) const;
 
+    friend std::ostream& operator<<(std::ostream& os, const Ray& ray);
 
 };
+
+std::ostream& operator<<(std::ostream& os, const Ray& ray);
