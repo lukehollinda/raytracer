@@ -4,11 +4,11 @@
 
 struct HitResult
 {
-    float t;
-    Vec3 p;
+    float time;
+    Vec3 point;
     Vec3 normal;
 
-    HitResult():t(0), p(0,0,0), normal(0,0,0){}
+    HitResult():time(0), point(0,0,0), normal(0,0,0){}
 };
 
 
@@ -16,5 +16,5 @@ struct HitResult
 class RenderableObject
 {
     public:
-        virtual bool hit(const Ray& r, HitResult result, float t_min = 0, float t_max = std::numeric_limits<float>::max() ) const = 0;
+        virtual bool hit(const Ray& r, HitResult& result, float t_min = 0, float t_max = std::numeric_limits<float>::max() ) const = 0;
 };

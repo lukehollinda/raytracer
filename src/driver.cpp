@@ -14,13 +14,25 @@ using namespace std;
 
 std::string resultFileName = "bitmapImage.bmp";
 
+float map(float c)
+{
+    float r = ((c+1)/2) * 255;
+    if(r < 0 || r > 255)
+    {
+    std::cout << c << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    else
+        return r;
+}
+
 
 
 int main(int argc, char const *argv[])
 {
 
-    int width = 1000; 
-    int height = 1000;
+    int width = 400; 
+    int height = 300;
     
     float aspectRatio = float(width)/float(height);
     Vec3 origin(0,0,0);
@@ -44,18 +56,16 @@ int main(int argc, char const *argv[])
             Ray ray(origin, pointOnScreen);
 
             Pixel pixel;
-            if(sphere.hit(ray, HitResult(), 0, 0 ))
+            HitResult result;
+            if(sphere.hit(ray, result))
             {
-                pixel = Pixel(0,0,255);
+                std::cout << result.time << std::endl;
+                pixel = Pixel(map(result.normal.getX()),map(result.normal.getY()),map(result.normal.getZ()));
             }
             else
             {
                 pixel = Pixel(0,255,0);
-
             }
-
-            //Pixel pixel( (unsigned char)std::rand()*255, (unsigned char)std::rand()*255, (unsigned char)std::rand()*255); 
-            // Pixel pixel( (unsigned char)dot(point, lowerLeftCorner), (unsigned char)dot(point, lowerLeftCorner), (unsigned char)dot(point, lowerLeftCorner));
             myImage.setPixel(i,k, pixel);        
         }
     }
