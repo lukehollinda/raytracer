@@ -3,7 +3,7 @@
 #include "image.h"
 #include "bitMapUtility.h"
 
-Image::Image(int w, int h) : height(h), width(w), imageData(height, std::vector<Pixel>(width, Pixel(0,0,0)))
+Image::Image(int w, int h) : height(h), width(w), imageData(height, std::vector<Color>(width, Color(0,0,0)))
 {
     if(w <= 0 || h <= 0)
     {
@@ -20,7 +20,7 @@ std::vector<char> Image::outputRowAsBytes(int row)
     std::vector<char> data(widthInBytes);
     for(int i = 0; i < (int)imageData.at(row).size(); i++)
     {
-        Pixel currentPixel = imageData.at(row).at(i);
+        Color currentPixel = imageData.at(row).at(i);
         data.at(i*3 + 0) = currentPixel.r;
         data.at(i*3 + 1) = currentPixel.g;
         data.at(i*3 + 2) = currentPixel.b;
@@ -30,7 +30,7 @@ std::vector<char> Image::outputRowAsBytes(int row)
 }
 
 
-Pixel Image::getPixel(int w, int h)
+Color Image::getPixel(int w, int h)
 {
     if(h >= height || h < 0)
     {
@@ -46,7 +46,7 @@ Pixel Image::getPixel(int w, int h)
     return imageData.at(h).at(w);
 }
 
-void Image::setPixel(int w, int h, const Pixel& pixel)
+void Image::setPixel(int w, int h, const Color& color)
 {
 
     if(h >= height || h < 0)
@@ -65,5 +65,5 @@ void Image::setPixel(int w, int h, const Pixel& pixel)
         std::cout << "Invalid Image::set, width out of bounds. ";
         exit(EXIT_FAILURE);
     }
-    imageData.at(h).at(w) = pixel;
+    imageData.at(h).at(w) = color;
 }

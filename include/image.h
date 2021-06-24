@@ -1,18 +1,18 @@
 #pragma once
 #include <vector>
 
-struct Pixel
+struct Color
 {
     unsigned char r,g,b;
 
-    Pixel(unsigned char r_,unsigned char g_,unsigned char b_)
+    Color(unsigned char r_,unsigned char g_,unsigned char b_)
     {
         r = r_;
         g = g_;
         b = b_;
     }
 
-    Pixel(): Pixel(0,0,0){}
+    Color(): Color(0,0,0){}
 };
 
 
@@ -20,12 +20,12 @@ class Image{
 
 private:
     int height, width;
-    std::vector<std::vector<Pixel>> imageData;
+    std::vector<std::vector<Color>> imageData;
 
 public: 
     Image(int w, int h);
-    Pixel getPixel(int w, int h);
-    void setPixel(int w, int h, const Pixel& pixel);
+    Color getPixel(int w, int h);
+    void setPixel(int w, int h, const Color& color);
     
 
     std::vector<char> outputRowAsBytes(int row);

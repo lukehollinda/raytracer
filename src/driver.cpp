@@ -71,11 +71,11 @@ int main(int argc, char const *argv[])
 
             std::cout << "ScreenDirection: " << ray.getDirection() << std::endl;
 
-            Pixel pixel;
+            Color color;
             HitResult result;
             if(world.hit(ray, result))
             {
-                pixel = Pixel(map(result.normal.getX()),map(result.normal.getY()),map(result.normal.getZ()));
+                color = Color(map(result.normal.getX()),map(result.normal.getY()),map(result.normal.getZ()));
 
                 std::cout << "PixelHit[" << i << "," << k << "] - (t : " << result.time << " )" << std::endl; 
                 std::cout << "      ->     (n : " << result.normal << " )" << std::endl; 
@@ -85,14 +85,14 @@ int main(int argc, char const *argv[])
             }
             else
             {
-                pixel = Pixel(0,255,0);
+                color = Color(0,255,0);
                 // std::cout << "Missed[" << i << "," << k << "] - (t : " << result.time << " )" << std::endl; 
                 // std::cout << "      ->     (n : " << result.normal << " )" << std::endl; 
                 // std::cout << "      ->     (p : " << result.point << " )" << std::endl; 
 
             }
 
-            myImage.setPixel(i,k, pixel);        
+            myImage.setPixel(i,k, color);        
         }
     }
 
