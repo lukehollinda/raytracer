@@ -13,9 +13,6 @@ bool Sphere::hit(const Ray& ray, HitResult& result, float t_min, float t_max) co
 
     float discriminant = b*b - 4*a*c;
     
-    // std::cout << "tmin: " << t_min << std::endl;
-    //     std::cout << "tmax: " << std::numeric_limits<float>::max() << std::endl;
-
     if(discriminant > 0)
     {
         //Check closest point within time bounds

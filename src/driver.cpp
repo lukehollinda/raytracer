@@ -8,6 +8,7 @@
 #include "vec3.h"
 #include "ray.h"
 #include "renderableObject.h"
+#include "objectCollection.h"
 #include "sphere.h"
 using namespace std;
 
@@ -31,8 +32,8 @@ float map(float c)
 int main(int argc, char const *argv[])
 {
 
-    int width = 400; 
-    int height = 300;
+    int width = 2000; 
+    int height = 1400;
     
     float aspectRatio = float(width)/float(height);
     Vec3 origin(0,0,0);
@@ -48,6 +49,13 @@ int main(int argc, char const *argv[])
 
     Sphere sphere(0.5, Vec3(0,0,-1)); 
 
+    RenderableObject * worldObjects[2];
+    worldObjects[0] = new Sphere(0.5, Vec3(0,0,-1)); 
+    worldObjects[1] = new Sphere(0.5, Vec3(-1,0,-2)); 
+    //worldObjects[2] = new  Sphere(0.5, Vec3(1,0,-3)); 
+
+    ObjectCollection world(worldObjects, 2);
+
     for(int i = 0; i < width; i++)
     {
         for( int k = 0; k < height; k++)
@@ -57,9 +65,8 @@ int main(int argc, char const *argv[])
 
             Pixel pixel;
             HitResult result;
-            if(sphere.hit(ray, result))
+            if(world.hit(ray, result))
             {
-                std::cout << result.time << std::endl;
                 pixel = Pixel(map(result.normal.getX()),map(result.normal.getY()),map(result.normal.getZ()));
             }
             else
