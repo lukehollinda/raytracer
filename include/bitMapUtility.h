@@ -9,6 +9,6 @@ const int FILE_HEADER_SIZE = 14;
 const int INFO_HEADER_SIZE = 40;
 
 void generateBitmapImage(Image image, std::string imageFileName);
-char* createBitmapFileHeader(int height, int stride);
-char* createBitmapInfoHeader(int height, int width);
+unsigned char* createBitmapFileHeader(int height, int stride);
+unsigned char* createBitmapInfoHeader(int height, int width);
 

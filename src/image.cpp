@@ -3,7 +3,7 @@
 #include "image.h"
 #include "bitMapUtility.h"
 
-Image::Image(int w, int h) : height(h), width(w), imageData(height, std::vector<Color>(width, Color(0,0,0)))
+Image::Image(int w, int h) : height(h), width(w), imageData(height, std::vector<Color>(width, Color(0.0f, 0.0f ,0.0f)))
 {
     if(w <= 0 || h <= 0)
     {
@@ -13,17 +13,17 @@ Image::Image(int w, int h) : height(h), width(w), imageData(height, std::vector<
 }
 
 
-std::vector<char> Image::outputRowAsBytes(int row)
+std::vector<unsigned char> Image::outputRowAsBytes(int row)
 {
     int widthInBytes = width * BYTES_PER_PIXEL;
     
-    std::vector<char> data(widthInBytes);
+    std::vector<unsigned char> data(widthInBytes);
     for(int i = 0; i < (int)imageData.at(row).size(); i++)
     {
         Color currentPixel = imageData.at(row).at(i);
-        data.at(i*3 + 0) = currentPixel.r;
+        data.at(i*3 + 0) = currentPixel.b;
         data.at(i*3 + 1) = currentPixel.g;
-        data.at(i*3 + 2) = currentPixel.b;
+        data.at(i*3 + 2) = currentPixel.r;
     }
 
     return data;   

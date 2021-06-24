@@ -12,7 +12,21 @@ struct Color
         b = b_;
     }
 
-    Color(): Color(0,0,0){}
+    Color(float r_, float g_, float b_)
+    {
+        r = (unsigned char)r_;
+        g = (unsigned char)g_;
+        b = (unsigned char)b_;
+    }
+
+    Color(int r_, int g_, int b_)
+    {
+        r = (unsigned char)r_;
+        g = (unsigned char)g_;
+        b = (unsigned char)b_;
+    }
+
+    Color(): Color(0.0f,0.0f,0.0f){}
 };
 
 
@@ -28,7 +42,7 @@ public:
     void setPixel(int w, int h, const Color& color);
     
 
-    std::vector<char> outputRowAsBytes(int row);
+    std::vector<unsigned char> outputRowAsBytes(int row);
 
     int getHeight() { return height;}
     int getWidth()  { return width;}
