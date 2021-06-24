@@ -32,6 +32,7 @@ void generateBitmapImage(Image image, std::string imageFileName)
         imageOutput.write(padding, paddingSize);
     }
 
+    imageOutput.flush();
     imageOutput.close();
 }
 

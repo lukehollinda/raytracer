@@ -12,6 +12,7 @@ class Ray
         {
             origin    = origin_;
             direction = direction_;
+            direction.normalize();
         }
 
         void setOrigin(const Vec3& origin_){origin = origin_;}

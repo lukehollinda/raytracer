@@ -34,21 +34,21 @@ Pixel Image::getPixel(int w, int h)
 {
     if(h >= height || h < 0)
     {
-        throw "Invalid Image::get, height out of bounds. ";
         std::cout << "Invalid Image::get, height out of bounds. ";
         exit(EXIT_FAILURE);
     }
     if(w >= width || w < 0)
     {
-        std::cout << "Invalid Image::get, height out of bounds. ";
+        std::cout << "Invalid Image::get, width out of bounds. ";
         exit(EXIT_FAILURE);
 
     }
-    return imageData.at(w).at(h);
+    return imageData.at(h).at(w);
 }
 
 void Image::setPixel(int w, int h, const Pixel& pixel)
 {
+
     if(h >= height || h < 0)
     {
         std::cout << "Invalid Image::set, height out of bounds. ";
@@ -56,7 +56,13 @@ void Image::setPixel(int w, int h, const Pixel& pixel)
     }
     if(w >= width || w < 0)
     {
-        std::cout << "Invalid Image::set, height out of bounds. ";
+        std::cout << "Width: " << width << std::endl;
+        std::cout << "w: " << w << std::endl;
+        std::cout << "Height: " << height << std::endl;
+        std::cout << "h: " << h << std::endl;
+
+        
+        std::cout << "Invalid Image::set, width out of bounds. ";
         exit(EXIT_FAILURE);
     }
     imageData.at(h).at(w) = pixel;

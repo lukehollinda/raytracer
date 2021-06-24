@@ -1,5 +1,7 @@
 #include "objectCollection.h"
+#include "renderableObject.h"
 
+#include <iostream>
 #include <limits>
 
 bool ObjectCollection::hit(const Ray& r, HitResult& result, float t_min, float t_max) const
@@ -12,6 +14,7 @@ bool ObjectCollection::hit(const Ray& r, HitResult& result, float t_min, float t
 
     for(int i = 0; i < objectListSize; i++)
     {
+        //std::cout <<"PollObj: " << i << std::endl;
         //Test if each object is hit by ray
         isHit = objectList[i]->hit(r, intermediateResult, t_min, t_max);
         
