@@ -49,43 +49,20 @@ Color rayToColor(const Ray& ray, const ObjectCollection& world)
     return color;
 }
 
-Vec3 rayToNormal(const Ray& ray, const ObjectCollection& world)
-{
-    Color color;
-
-    HitResult result;
-    if(world.hit(ray, result))
-    {
-        Vec3 mapped = result.normal;
-        mapped.normalize();
-        mapped = (mapped + Vec3(1,1,1)) /2 * 255.99;
-        return Vec3(mapped.getX(), mapped.getY(), mapped.getZ());
-        color = Color(mapped.getX(), mapped.getY(), mapped.getZ());
-    }
-    else
-    {
-        return Vec3(0,255,0);
-        color = Color(0,255,0);
-    }
-
-    
-}
-
-
 float randomZeroToOne()
 {
-    return rand() / (RAND_MAX + 1.0) * 2;
+    return rand() / (RAND_MAX + 1.0);
 }
 
 int main(int argc, char const *argv[])
 {
     int width = constants::IMAGE_WIDTH; 
     int height = constants::IMAGE_HEIGHT;
-    int antiAliasDepth = constants::ANTI_ALIAS_DEPTH;
+    int samplingDepth = constants::SAMPLING_DEPTH;
 
     cout << "Width: "  << width << std::endl;
     cout << "Height: " << height << std::endl;
-    cout << "AntiAlias Depth: " << antiAliasDepth << std::endl;
+    cout << "Sampling Depth: " << samplingDepth << std::endl;
 
     //float aspectRatio = float(width)/float(height);
     Vec3 origin(0,0,0);
@@ -109,33 +86,33 @@ int main(int argc, char const *argv[])
         {            
 
             //Perform randomized antialias sampling
-            float r = 0; 
-            float g = 0; 
-            float b = 0;
-            for(int a = 0; a < antiAliasDepth; a++)
+            float summedRValue = 0;
+            float summedGValue = 0;
+            float summedBValue = 0;
+
+            Color returnColor;
+
+            for(int a = 0; a < samplingDepth; a++)
             {
+                //Random offset used to perform anti-aliasing
                 Vec3 horizontalOffset = horizontal * (float(i)+randomZeroToOne()) / float(width);
                 Vec3 verticalOffset   = vertical * (float(k)+randomZeroToOne()) /float(height);
 
                 Vec3 pointOnScreen = lowerLeftCorner + horizontalOffset + verticalOffset;
                 Ray ray(origin, pointOnScreen);
-                //Color rayColor = rayToColor(ray, world);
 
-                // r += rayColor.r/antiAliasDepth;
-                // g += rayColor.g/antiAliasDepth;
-                // b += rayColor.b/antiAliasDepth;
-                Vec3 returnCol = rayToNormal(ray, world);
+                returnColor = rayToColor(ray, world);
 
-                r += returnCol.getX()/antiAliasDepth;
-                g += returnCol.getY()/antiAliasDepth;
-                b += returnCol.getZ()/antiAliasDepth;
-
-                //TODO Clean up all of this and change the Color struct to hold rgb values in floats until converted to bitmap
+                summedRValue += returnColor.r;
+                summedGValue += returnColor.g;
+                summedBValue += returnColor.b;
             }
 
+            summedRValue /= samplingDepth;
+            summedGValue /= samplingDepth;
+            summedBValue /= samplingDepth;
 
-
-            myImage.setPixel(i,k, Color(r,g,b));        
+            myImage.setPixel(i,k, Color(summedRValue, summedGValue, summedBValue));        
         }
     }
 

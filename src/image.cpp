@@ -21,9 +21,9 @@ std::vector<unsigned char> Image::outputRowAsBytes(int row)
     for(int i = 0; i < (int)imageData.at(row).size(); i++)
     {
         Color currentPixel = imageData.at(row).at(i);
-        data.at(i*3 + 0) = currentPixel.b;
-        data.at(i*3 + 1) = currentPixel.g;
-        data.at(i*3 + 2) = currentPixel.r;
+        data.at(i*3 + 0) = (unsigned char)currentPixel.b;
+        data.at(i*3 + 1) = (unsigned char)currentPixel.g;
+        data.at(i*3 + 2) = (unsigned char)currentPixel.r;
     }
 
     return data;   

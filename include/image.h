@@ -3,27 +3,13 @@
 
 struct Color
 {
-    unsigned char r,g,b;
-
-    Color(unsigned char r_,unsigned char g_,unsigned char b_)
+    float r,g,b;
+    
+    Color(float r_, float g_, float b_)
     {
         r = r_;
         g = g_;
         b = b_;
-    }
-
-    Color(float r_, float g_, float b_)
-    {
-        r = (unsigned char)r_;
-        g = (unsigned char)g_;
-        b = (unsigned char)b_;
-    }
-
-    Color(int r_, int g_, int b_)
-    {
-        r = (unsigned char)r_;
-        g = (unsigned char)g_;
-        b = (unsigned char)b_;
     }
 
     Color(): Color(0.0f,0.0f,0.0f){}
