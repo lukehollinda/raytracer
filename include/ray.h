@@ -14,6 +14,9 @@ class Ray
             direction = direction_;
             direction.normalize();
         }
+        
+        Ray():origin(0,0,0), direction(0,0,0) {}
+
 
         void setOrigin(const Vec3& origin_){origin = origin_;}
         void setDirection(const Vec3& direction_){direction = direction_;}        

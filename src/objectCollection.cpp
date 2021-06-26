@@ -29,6 +29,12 @@ bool ObjectCollection::hit(const Ray& r, HitResult& result, float t_min, float t
         result.time   = closest.time;
         result.normal = closest.normal;
         result.point  = closest.point;
+        result.material = closest.material;
+
+        // std::cout << "hitResult.material (Being returned from world Hit): " << result.material << std::endl;
+        // std::cout << "hitResult.normal (Being returned from world Hit): " << result.normal << std::endl;
+        // std::cout << "hitResult.point (Being returned from world Hit): " << result.point << std::endl;
+        // std::cout << "hitResult.time (Being returned from world Hit): " << result.time << std::endl;
         return true;
     }
 

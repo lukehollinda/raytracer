@@ -1,7 +1,7 @@
 #pragma once
 #include "renderableObject.h"
 
-class ObjectCollection : public RenderableObject
+class ObjectCollection
 {
 private:
     RenderableObject ** objectList;

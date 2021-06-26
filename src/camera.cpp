@@ -42,8 +42,8 @@ Camera::Camera(Vec3 position_, Vec3 direction_, Vec3 upwards_, float verticalFie
     imagePlaneLowerLeft = position + (direction * focalLength) - (imagePlaneWidth / 2) - (imagePlaneHeight / 2);
 
     std::cout << "ImageLowerLeft - " << imagePlaneLowerLeft << std::endl;
-    std::cout << "ImagePlaceWidth - " << imagePlaneWidth << std::endl;
-    std::cout << "ImagePlaceHeight - " << imagePlaneHeight << std::endl;
+    std::cout << "ImagePlaneWidth - " << imagePlaneWidth << std::endl;
+    std::cout << "ImagePlaneHeight - " << imagePlaneHeight << std::endl;
 
 }
 

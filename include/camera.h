@@ -24,6 +24,7 @@ class Camera
 
     public: 
         Camera(Vec3 position_, Vec3 direction_, Vec3 upwards_, float verticalFieldofViewDegrees, float aspectRatio, float focalLength_);
+        Camera() {}
 
         Ray castRay(float screenXPercent, float screenYPercent);
       

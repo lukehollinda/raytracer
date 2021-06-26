@@ -3,7 +3,7 @@
 #include "objectCollection.h"
 #include "ray.h"
 
-Color rayToColor(const Ray& ray, const ObjectCollection& world);
+Color rayToColor(const Ray& ray, const ObjectCollection& world, int recursionDepth);
 
 float randomZeroToOne();
 

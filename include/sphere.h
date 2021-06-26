@@ -8,8 +8,7 @@ private:
     float radius;
 
 public: 
-    Sphere(): center(0,0,0), radius(0) {}
-    Sphere(float radius_, Vec3 center_){radius = radius_; center = center_;}
+    Sphere(float radius_, Vec3 center_, Material* material);
 
     virtual bool hit(const Ray& r, HitResult& result, float t_min = 0, float t_max = std::numeric_limits<float>::max() ) const override;
 

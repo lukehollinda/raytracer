@@ -1,23 +1,52 @@
 #include "renderingUtility.h"
-
-Color rayToColor(const Ray& ray, const ObjectCollection& world)
+#include "constants.h"
+Color rayToColor(const Ray& ray, const ObjectCollection& world, int recursionDepth)
 {
+
+    // std::cout << "rayToColor Called" << std::endl;
     Color color;
 
-    HitResult result;
-    if(world.hit(ray, result))
+    HitResult hitResult;
+    // std::cout << "hitResult.material (pre initialization): " << hitResult.material << std::endl;
+    // std::cout << "hitResult.normal (pre initialization): " << hitResult.normal << std::endl;
+    // std::cout << "hitResult.point (pre initialization): " << hitResult.point << std::endl;
+    // std::cout << "hitResult.time (pre initialization): " << hitResult.time << std::endl;
+
+    if(world.hit(ray, hitResult, 0.00001))
     {
-        Vec3 mapped = result.normal;
-        mapped.normalize();
-        mapped = (mapped + Vec3(1,1,1)) /2 * 255.99;
-        color = Color(mapped.getX(), mapped.getY(), mapped.getZ());
+        // std::cout << "hit Called & returned" << std::endl;
+
+    // std::cout << "hitResult.material: " << hitResult.material << std::endl;
+    // std::cout << "hitResult.normal: " << hitResult.normal << std::endl;
+    // std::cout << "hitResult.point: " << hitResult.point << std::endl;
+    // std::cout << "hitResult.time: " << hitResult.time << std::endl;
+
+     
+        Color attenuation;
+        Ray scatteredRay;
+
+        //If we have not reached max depth, calculate scattered Ray and recurse
+        if(recursionDepth < constants::RECURSION_DEPTH_MAX && hitResult.material->calculateScatterRay(ray, scatteredRay, attenuation, hitResult))
+        {
+            // std::cout << "Recursing" << std::endl;
+            return (attenuation / 255) * rayToColor(scatteredRay, world, recursionDepth + 1);
+        }
+        else
+        {
+            // std::cout << "Returning black end case" << std::endl;
+            return Color(0,0,0);
+        }
+        
     }
     else
     {
-        color = Color(0,255,0);
+        // std::cout << "Returning skybox" << std::endl;
+       
+        //Skybox color;
+        return Color(255,255,255);
     }
 
-    return color;
+
 }
 
 float randomZeroToOne()

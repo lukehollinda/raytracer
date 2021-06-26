@@ -33,7 +33,16 @@ void Color::operator/=(float right)
     assertValidity();
 }
 
+Color Color::operator*(Color right)
+{
+    Color color(r*right.r, g*right.g, b*right.b );
+    color.assertValidity();
+    return color;
+}
 
+
+
+//TO-DO, probably want to remove this / consider it's performance impact. Just adopt TDD you fool.
 void Color::assertValidity()
 {   
     //Assert all components are within range
