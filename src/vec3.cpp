@@ -1,6 +1,6 @@
 #include <iostream>
 #include <iomanip>
-
+#include <assert.h>
 #include "vec3.h"
 
 
@@ -39,6 +39,7 @@ Vec3& Vec3::operator*=(const Vec3 &right)
 
 Vec3& Vec3::operator/=(const Vec3 &right)
 {
+    assert(right.x != 0 && right.y != 0 && right.z != 0);
     x /= right.x;
     y /= right.y;
     z /= right.z;
@@ -55,6 +56,7 @@ Vec3& Vec3::operator*=(const float& right)
 
 Vec3& Vec3::operator/=(const float& right)
 {
+    assert(right != 0);
     x /= right;
     y /= right;
     z /= right;    
@@ -63,6 +65,7 @@ Vec3& Vec3::operator/=(const float& right)
 
 Vec3 Vec3::operator/(const float& right) const
 {
+    assert(right != 0);
     return Vec3(x/right, y/right, z/right);
 }
 
@@ -90,6 +93,7 @@ void Vec3::normalize()
 
 Vec3 unitVector(Vec3 src)
 {
+    assert(src.length() != 0);
     return src / src.length();
 }
 

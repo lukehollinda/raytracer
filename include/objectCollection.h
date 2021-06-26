@@ -6,7 +6,6 @@ class ObjectCollection : public RenderableObject
 private:
     RenderableObject ** objectList;
     int objectListSize;
-
 public:
 
     ObjectCollection(RenderableObject ** objects, int size){ objectList = objects; objectListSize = size;}

@@ -3,14 +3,6 @@
 #include "ray.h"
 #include <math.h>
 
-
-#define _USE_MATH_DEFINES
-#include <cmath>
-    // Vec3 lowerLeftCorner(-2, -1, -1);
-    // Vec3 horizontal(4,0,0);
-    // Vec3 vertical(0,2,0);
-
-
 class Camera 
 {
     private:
@@ -31,7 +23,7 @@ class Camera
         float aspectRatio;
 
     public: 
-        Camera(Vec3 position_, Vec3 direction_, Vec3 upwards_, float verticalFieldofViewDegrees, float aspectRatio);
+        Camera(Vec3 position_, Vec3 direction_, Vec3 upwards_, float verticalFieldofViewDegrees, float aspectRatio, float focalLength_);
 
         Ray castRay(float screenXPercent, float screenYPercent);
       

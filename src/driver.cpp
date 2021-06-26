@@ -13,47 +13,11 @@
 #include "sphere.h"
 #include "constants.h"
 #include "camera.h"
-
+#include "renderingUtility.h"
 
 
 std::string resultFileName = "output/bitmapImage.bmp";
 
-float map(float c)
-{
-    float r = ((c+1)/2) * 255;
-    if(r < 0 || r > 255)
-    {
-    std::cout << c << std::endl;
-        exit(EXIT_FAILURE);
-    }
-    else
-        return r;
-}
-
-Color rayToColor(const Ray& ray, const ObjectCollection& world)
-{
-    Color color;
-
-    HitResult result;
-    if(world.hit(ray, result))
-    {
-        Vec3 mapped = result.normal;
-        mapped.normalize();
-        mapped = (mapped + Vec3(1,1,1)) /2 * 255.99;
-        color = Color(mapped.getX(), mapped.getY(), mapped.getZ());
-    }
-    else
-    {
-        color = Color(0,255,0);
-    }
-
-    return color;
-}
-
-float randomZeroToOne()
-{
-    return rand() / (RAND_MAX + 1.0);
-}
 
 int main(int argc, char const *argv[])
 {
@@ -81,7 +45,7 @@ int main(int argc, char const *argv[])
 
     ObjectCollection world(worldObjects, 3);
 
-    Camera camera(Vec3(0,0.3,-0.5), Vec3(0,-0.3,-1), Vec3(0,0,0), 90, width/height );
+    Camera camera(Vec3(0,0.3,-0.5), Vec3(0,-0.3,-1), Vec3(0,1,0), 90.0, (float)width/height, 1 );
 
     for(int i = 0; i < width; i++)
     {

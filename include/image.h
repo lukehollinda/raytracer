@@ -1,20 +1,6 @@
 #pragma once
 #include <vector>
-
-struct Color
-{
-    float r,g,b;
-    
-    Color(float r_, float g_, float b_)
-    {
-        r = r_;
-        g = g_;
-        b = b_;
-    }
-
-    Color(): Color(0.0f,0.0f,0.0f){}
-};
-
+#include "color.h"
 
 class Image{
 
