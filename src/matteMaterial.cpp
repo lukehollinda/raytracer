@@ -1,14 +1,14 @@
-#include "matte.h"
+#include "MatteMaterial.h"
 #include "renderingUtility.h"
 #include "ray.h"
 
 
-Matte::Matte(Color albedo_)
+MatteMaterial::MatteMaterial(Color albedo_)
 {
     albedo = albedo_;
 }
 
-bool Matte::calculateScatterRay(const Ray& ray,  Ray& scattered, Color& attenuation, const HitResult& hitResult) const
+bool MatteMaterial::calculateScatterRay(const Ray& ray,  Ray& scattered, Color& attenuation, const HitResult& hitResult) const
 {
     // std::cout << "Calculate Scatter :: Matte, occuring" << std::endl;
 

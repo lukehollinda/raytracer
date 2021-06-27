@@ -14,7 +14,8 @@
 #include "constants.h"
 #include "camera.h"
 #include "renderingUtility.h"
-#include "matte.h"
+#include "MatteMaterial.h"
+#include "metalMaterial.h"
 
 
 std::string resultFileName = "output/bitmapImage.bmp";
@@ -38,19 +39,18 @@ int main(int argc, char const *argv[])
 
     Image myImage(width, height); 
 
-    RenderableObject * worldObjects[2];
+    RenderableObject * worldObjects[3];
     
-    Material* mat1 = new Matte( Color(255/2, 255/2, 255/2));
-    Material* mat2 = new Matte( Color(255/2, 255/2, 255/2));
+    Material* mat1 = new MetalMaterial( Color(255*0.9, 255*0.9, 255*0.9), 0.9);
+    Material* mat2 = new MatteMaterial( Color(255/2, 255/8, 255/2));
+    Material* mat3 = new MatteMaterial( Color(0, 0, 255/2));
 
-    std::cout << "Mem location mat1: " << mat1 << std::endl;
-    std::cout << "Mem location mat2: " << mat2 << std::endl;
 
-    worldObjects[0] = new Sphere(0.5, Vec3(0,0,-4), mat1 ); 
+    worldObjects[0] = new Sphere(1, Vec3(0,0.5,-4), mat1 ); 
     worldObjects[1] = new Sphere(100, Vec3(0,-100.5,-4), mat2); 
-    //worldObjects[2] = new Sphere(3, Vec3(3,3.5,-4)); 
+    worldObjects[2] = new Sphere(0.5, Vec3(2,0,-4), mat3); 
 
-    ObjectCollection world(worldObjects, 2);
+    ObjectCollection world(worldObjects, 3);
 
    std::cout << "Before camera initialization\n";// << samplingDepth << std::endl;
    Camera camera;
@@ -68,6 +68,10 @@ int main(int argc, char const *argv[])
 
     for(int i = 0; i < width; i++)
     {
+        
+        if(i %100 == 0)
+            std::cout << "Begining column " << i << std::endl;
+
         for( int k = 0; k < height; k++)
         {            
 
@@ -78,7 +82,6 @@ int main(int argc, char const *argv[])
 
             Color returnColor;
 
-            std::cout << "Begining Search on pixle[" << i << "," << k << "]" << std::endl;
 
             for(int a = 0; a < samplingDepth; a++)
             {                
