@@ -2,4 +2,10 @@
 
 - Check if a square-length function will cut down render time (In random unit circle function, ect)
 
-- Check for memory leaks in the few times you use new
+- Check for memory leaks in the few times you 'new' is used
+
+- Implement better antialiasing technique ( Super sampling? )
+
+- Add gloss to translucent material
+
+- Render a video? Images chained with moving camera / objects

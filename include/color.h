@@ -21,6 +21,7 @@ struct Color
     void operator/=(float right);
 
     Color operator*(Color right);
+    Color operator+(Color right);
 
     void assertValidity();
 };

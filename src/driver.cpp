@@ -14,9 +14,9 @@
 #include "constants.h"
 #include "camera.h"
 #include "renderingUtility.h"
-#include "MatteMaterial.h"
+#include "matteMaterial.h"
 #include "metalMaterial.h"
-
+#include "translucentMaterial.h"
 
 std::string resultFileName = "output/bitmapImage.bmp";
 
@@ -41,14 +41,16 @@ int main(int argc, char const *argv[])
 
     RenderableObject * worldObjects[3];
     
-    Material* mat1 = new MetalMaterial( Color(255*0.9, 255*0.9, 255*0.9), 0.9);
+    //Material* mat1 = new MetalMaterial( Color(255*0.9, 255*0.9, 255*0.9), 1);
+    //Material* mat1 = new MatteMaterial( Color(255*0.9, 255*0.9, 255/2));
+    Material* mat1 = new TranslucentMaterial( Color(255, 255, 255), 3);
     Material* mat2 = new MatteMaterial( Color(255/2, 255/8, 255/2));
     Material* mat3 = new MatteMaterial( Color(0, 0, 255/2));
 
 
     worldObjects[0] = new Sphere(1, Vec3(0,0.5,-4), mat1 ); 
-    worldObjects[1] = new Sphere(100, Vec3(0,-100.5,-4), mat2); 
-    worldObjects[2] = new Sphere(0.5, Vec3(2,0,-4), mat3); 
+    worldObjects[1] = new Sphere(500, Vec3(0,-500.5,-4), mat2); 
+    worldObjects[2] = new Sphere(0.8, Vec3(0.5,0.3,-6), mat3); 
 
     ObjectCollection world(worldObjects, 3);
 

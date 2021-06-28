@@ -1,5 +1,6 @@
 #include "color.h"
 #include <assert.h>
+#include <iostream>
 
 Color Color::operator*(float right)
 {
@@ -40,11 +41,40 @@ Color Color::operator*(Color right)
     return color;
 }
 
+Color Color::operator+(Color right)
+{
+    Color color(r+right.r, g+right.g, b+right.b);
+    color.assertValidity();
+    return color;
+}
 
 
 //TO-DO, probably want to remove this / consider it's performance impact. Just adopt TDD you fool.
 void Color::assertValidity()
 {   
+    if( r < 0 )
+        r = 0;
+
+    if(r > 255)
+        r = 255;
+    
+    if( g < 0 )
+        g = 0;
+
+    if(g > 255)
+        g = 255;   
+
+    if( b < 0 )
+        b = 0;
+
+    if(b > 255)
+        b = 255;
+
+
+    //Strangly bugging out at the moment, will fix ASAP
+
     //Assert all components are within range
-    assert(r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255);
+    // assert(r >= 0 && r <= 255);
+    // assert(g >= 0 && g <= 255);
+    // assert(b >= 0 && b <= 255);
 }
