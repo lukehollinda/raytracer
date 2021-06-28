@@ -1,5 +1,9 @@
 - Implement everything
 
+- Read object positions from JSON file 
+
+- Switch rendering paramters from contants.h to program arguments
+
 - Check if a square-length function will cut down render time (In random unit circle function, ect)
 
 - Check for memory leaks in the few times you 'new' is used
