@@ -1,5 +1,4 @@
-An in progress personal project written entirely in C++. Currently only supports sphere objects. Matte, metalic, and translucent material. 
-
+An in-progress personal project written entirely in C++. Currently only supports sphere objects. Matte, metallic, and translucent material.
 
 
 To build and run use:
