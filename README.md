@@ -1,4 +1,4 @@
-An in-progress personal project written entirely in C++. Currently only supports sphere objects. Matte, metallic, and translucent material.
+Personal pathtracing renderer written entirely in C++. Currently only supports sphere objects. Matte, metallic, and translucent material. Next steps are to implement better anti aliasing and add triangles. 
 
 
 To build and run use:
