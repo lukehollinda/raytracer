@@ -10,7 +10,7 @@ To build and run use:
 These commands must be run from a linux environment with make or using the WLS.
 
 At the moment the rendering parameters are controlled from a **constants.h** file and the scene objects are configured in **driver.cpp**. 
-Very soon I should be converting the rendering paramters to command line arguments and the scene configuration to json input.
+Very soon I should be converting the rendering parameters to command line arguments and the scene configuration to json input.
 
 ![alt text](output/medium_quality_color.bmp?raw=true)
 
