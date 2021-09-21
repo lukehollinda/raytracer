@@ -26,12 +26,7 @@ Color rayToColor(const Ray& ray, const ObjectCollection& world, int recursionDep
     }
     else
     {    
-        //return Color(255,255,255);  
-        //Skybox color;
         float mappedYVal_zeroToOne = (unitVector(ray.getDirection() ).getY() + 1) / 2;
-
-        //std::cout << "MAPPED VALUE !! : " << mappedYVal_zeroToOne << std::endl;
-
         return Color(255,255,255) * mappedYVal_zeroToOne + Color(255,150,255) * (1 - mappedYVal_zeroToOne);
     }
 

@@ -14,6 +14,7 @@ Camera::Camera(Vec3 position_, Vec3 direction_, Vec3 upwards_, float verticalFie
     std::cout << "position UNIT- " << position << std::endl;
     std::cout << "direction UNIT- " << direction << std::endl;
     std::cout << "upwards UNIT- " << upwards << std::endl;
+
     //Parallel to camera direction and upwards direction. 
     Vec3 planeHorizontalDirection = unitVector(cross(direction, upwards));
     //Parallel to camera direction and the horizantal direction.
@@ -21,11 +22,6 @@ Camera::Camera(Vec3 position_, Vec3 direction_, Vec3 upwards_, float verticalFie
 
     std::cout << "planeHorizontalDirection - " << planeHorizontalDirection << std::endl;
     std::cout << "planeVirticalDirection - " << planeVirticalDirection << std::endl;
-
-
-    // imagePlaneLowerLeft = Vec3(-2,-1,-1);
-    // imagePlaneWidth = Vec3(4,0,0);
-    // imagePlaneHeight = Vec3(0,2,0);
 
     const double PI = 3.141592653589793238463;
 
@@ -35,7 +31,6 @@ Camera::Camera(Vec3 position_, Vec3 direction_, Vec3 upwards_, float verticalFie
 
     std::cout << "halfHeight - " << halfHeight << std::endl;
     std::cout << "halfWidth - " << halfWidth << std::endl;
-
 
     imagePlaneWidth = planeHorizontalDirection * halfWidth * 2;
     imagePlaneHeight = planeVirticalDirection  * halfHeight * 2;

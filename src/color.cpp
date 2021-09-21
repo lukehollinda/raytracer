@@ -70,11 +70,4 @@ void Color::assertValidity()
     if(b > 255)
         b = 255;
 
-
-    //Strangly bugging out at the moment, will fix ASAP
-
-    //Assert all components are within range
-    // assert(r >= 0 && r <= 255);
-    // assert(g >= 0 && g <= 255);
-    // assert(b >= 0 && b <= 255);
 }

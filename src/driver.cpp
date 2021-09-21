@@ -41,8 +41,6 @@ int main(int argc, char const *argv[])
 
     RenderableObject * worldObjects[3];
     
-    //Material* mat1 = new MetalMaterial( Color(255*0.9, 255*0.9, 255*0.9), 1);
-    //Material* mat1 = new MatteMaterial( Color(255*0.9, 255*0.9, 255/2));
     Material* mat1 = new TranslucentMaterial( Color(255, 255, 255), 3);
     Material* mat2 = new MatteMaterial( Color(255/2, 255/8, 255/2));
     Material* mat3 = new MatteMaterial( Color(0, 0, 255/2));

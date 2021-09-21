@@ -13,11 +13,6 @@ Sphere::Sphere(float radius_, Vec3 center_, Material* material): RenderableObjec
 
 bool Sphere::hit(const Ray& ray, HitResult& result, float t_min, float t_max) const
 {
-    // std::cout << "hitResult.material (IN HIT BEFORE CHANGE): " << result.material << std::endl;
-    // std::cout << "hitResult.normal (IN HIT BEFORE CHANGE): " << result.normal << std::endl;
-    // std::cout << "hitResult.point (IN HIT BEFORE CHANGE): " << result.point << std::endl;
-    // std::cout << "hitResult.time (IN HIT BEFORE CHANGE): " << result.time << std::endl;
-
     Vec3 oc = ray.getOrigin() - center;
     float a = dot(ray.getDirection(), ray.getDirection());
     float b = 2.0 * dot(oc, ray.getDirection());
@@ -34,9 +29,7 @@ bool Sphere::hit(const Ray& ray, HitResult& result, float t_min, float t_max) co
             result.time = timeTest;
             result.point = ray.pointAtTime(timeTest);
             result.normal = (result.point - center) / radius;
-            // std::cout << "Applying add: " << material << " into res.mat." << std::endl;
             result.material = material;     
-            // std::cout << "Res.mat now: " << result.material << std::endl; 
 
             return true;
         }
@@ -48,9 +41,8 @@ bool Sphere::hit(const Ray& ray, HitResult& result, float t_min, float t_max) co
             result.time = timeTest;
             result.point = ray.pointAtTime(timeTest);
             result.normal = (result.point - center) / radius;
-            // std::cout << "Applying add: " << material << " into res.mat." << std::endl;
             result.material = material;     
-            // std::cout << "Res.mat now: " << result.material << std::endl;    
+        
             return true;
         }     
     }
